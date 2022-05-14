@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".activity.RegisterMain">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="371dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="90dp"
+        android:gravity="center"
+        android:text="SIGN UP"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_RegisterFacebook"
+        android:layout_width="346dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/radiusbutton"
+        android:drawableLeft="@drawable/logos_facebook"
+        android:gravity="center_vertical"
+        android:text="Connect with Facebook"
+        android:textAllCaps="false"
+        android:textColor="#3F51B5"
+        android:textSize="20dp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_RegisterGoogle"
+        android:layout_width="346dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/radiusbutton"
+        android:drawableLeft="@drawable/flat_color_icons_google"
+        android:gravity="center_vertical"
+        android:text="Connect with Google"
+        android:textAllCaps="false"
+        android:textColor="#F44336"
+        android:textSize="20dp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/btn_RegisterFacebook"
+        app:layout_constraintStart_toStartOf="@+id/btn_RegisterFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/btn_RegisterFacebook" />
+
+    <Button
+        android:id="@+id/btn_RegisterApple"
+        android:layout_width="346dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/radiusbutton"
+        android:drawableLeft="@drawable/bi_apple"
+        android:gravity="center_vertical"
+        android:text="Connect with Apple"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/btn_RegisterGoogle"
+        app:layout_constraintStart_toStartOf="@+id/btn_RegisterGoogle"
+        app:layout_constraintTop_toBottomOf="@+id/btn_RegisterGoogle" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="We’ll never post without your permission."
+        android:textColor="#787676"
+        app:layout_constraintEnd_toEndOf="@+id/btn_RegisterApple"
+        app:layout_constraintStart_toStartOf="@+id/btn_RegisterApple"
+        app:layout_constraintTop_toBottomOf="@+id/btn_RegisterApple" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="163dp"
+        android:layout_height="2dp"
+        android:background="#757575"
+        android:backgroundTint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="163dp"
+        android:layout_height="2dp"
+        android:background="#757575"
+        android:backgroundTint="#757575"
+        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="OR"
+        android:textColor="#696969"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="345dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
+        android:background="#272626"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <EditText
+            android:id="@+id/txtEmail_Register"
+            android:layout_width="345dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#7F7E7E"
+            android:textColorHint="#7F7E7E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtPassword_Register"
+            android:layout_width="345dp"
+            android:layout_height="60dp"
+            android:drawableRight="@drawable/bi_eye_fill"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#7F7E7E"
+            android:textColorHint="#7F7E7E"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail_Register" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_RegisterSignUp"
+        android:layout_width="346dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#4CAF50"
+        android:backgroundTint="#4CAF50"
+        android:text="SIGN UP"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        app:backgroundTint="#227C26"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+    <TextView
+        android:id="@+id/txt_RegisterSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Sign In"
+        android:textColor="#228025"
+        android:textSize="20dp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/btn_RegisterSignUp"
+        app:layout_constraintStart_toStartOf="@+id/btn_RegisterSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_RegisterSignUp" />
+
+    <ImageButton
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bx_left_arrow_alt" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
