@@ -1,16 +1,16 @@
 package com.example.personalfinance.entity;
 
 public class Spending {
-    private String id;
+    private long id;
     private String type;
-    private String img;
+    private int img;
     private String note;
     private double money;
 
     public Spending() {
     }
 
-    public Spending(String id, String type, String img, String note, double money) {
+    public Spending(long id, String type, int img, String note, double money) {
         this.id = id;
         this.type = type;
         this.img = img;
@@ -18,11 +18,11 @@ public class Spending {
         this.money = money;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -50,11 +50,11 @@ public class Spending {
         this.money = money;
     }
 
-    public String getImg() {
+    public int getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(int img) {
         this.img = img;
     }
 

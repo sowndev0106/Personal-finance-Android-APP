@@ -9,24 +9,31 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.personalfinance.R;
+import com.example.personalfinance.entity.DateOfMonth;
+import com.example.personalfinance.entity.MonthOfYear;
 
+import org.w3c.dom.Text;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DateAdapter extends BaseAdapter {
     private Context context;
     private int idLayout;
-    private List<String> list;
+    private MonthOfYear monthOfYear;
 
-    public DateAdapter(Context context, int idLayout, List<String> list) {
+    public DateAdapter(Context context, int idLayout, MonthOfYear monthOfYear) {
         this.context = context;
         this.idLayout = idLayout;
-        this.list = list;
+        this.monthOfYear = monthOfYear;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        if (monthOfYear == null || monthOfYear.getDateOfMonths()==null || monthOfYear.getDateOfMonths().isEmpty())
+            return 0;
+        return monthOfYear.getDateOfMonths().size();
     }
 
     @Override
@@ -44,21 +51,36 @@ public class DateAdapter extends BaseAdapter {
         if (convertView == null){
             convertView = LayoutInflater.from(parent.getContext()).inflate(idLayout,parent,false);
         }
-        ListView listViewSpending = convertView.findViewById(R.id.listviewSpending);
-        List<String> list1 = new ArrayList<>();
-        list1.add("1");
-        list1.add("2");
-        list1.add("3");
-        list1.add("1");
-        list1.add("2");
-        list1.add("3");
-        list1.add("1");
-        list1.add("2");
-        list1.add("3");
-        ViewGroup.LayoutParams params = listViewSpending.getLayoutParams();
-        params.height = 225*list1.size();
-        SpendingAdapter spendingAdapter = new SpendingAdapter(parent.getContext(),R.layout.spending_item,list1);
-        listViewSpending.setAdapter(spendingAdapter);
+
+        TextView txtDate = convertView.findViewById(R.id.txtItemDate_Date);
+        TextView txtDay = convertView.findViewById(R.id.txtItemDate_Day);
+        TextView txtMonth = convertView.findViewById(R.id.txtItemDate_MonthYear);
+        TextView txtTotal = convertView.findViewById(R.id.txtItemDate_TotalMoney);
+
+        if (monthOfYear != null && monthOfYear.getDateOfMonths()!=null && !monthOfYear.getDateOfMonths().isEmpty()){
+            DecimalFormat formatter = new DecimalFormat("###,###,###");
+
+            DateOfMonth date = monthOfYear.getDateOfMonths().get(position);
+            txtDate.setText(date.getDate()+"");
+            txtDay.setText(date.getDay());
+            txtMonth.setText("Tháng " + monthOfYear.getMonth() + " " + monthOfYear.getYear());
+            if (date.totalMoneyInDate()>0){
+                txtTotal.setText("+"+formatter.format(date.totalMoneyInDate()));
+            }else{
+                txtTotal.setText(formatter.format(date.totalMoneyInDate()));
+            }
+
+            if (date.getSpendings() != null && !date.getSpendings().isEmpty()){
+                ListView listViewSpending = convertView.findViewById(R.id.listviewSpending);
+                ViewGroup.LayoutParams params = listViewSpending.getLayoutParams();
+                params.height = 196*date.getSpendings().size();
+                SpendingAdapter spendingAdapter = new SpendingAdapter(parent.getContext(),R.layout.spending_item,date.getSpendings());
+                listViewSpending.setAdapter(spendingAdapter);
+            }
+
+        }
+
+
         return convertView;
     }
 }

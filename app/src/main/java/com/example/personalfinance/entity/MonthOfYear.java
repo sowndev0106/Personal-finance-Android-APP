@@ -40,6 +40,30 @@ public class MonthOfYear {
         this.dateOfMonths = dateOfMonths;
     }
 
+    public double totalMoneyInMonth(){
+        double total = 0;
+        for (DateOfMonth item : this.dateOfMonths){
+            total += item.totalMoneyInDate();
+        }
+        return total;
+    }
+
+    public double totalInMoneyInMonth(){
+        double total = 0;
+        for (DateOfMonth item : this.dateOfMonths){
+            total += item.totalInMoneyInDate();
+        }
+        return total;
+    }
+
+    public double totalOutMoneyInMonth(){
+        double total = 0;
+        for (DateOfMonth item : this.dateOfMonths){
+            total += item.totalOutMoneyInDate();
+        }
+        return total;
+    }
+
     @Override
     public String toString() {
         return "MonthOfYear{" +

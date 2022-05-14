@@ -50,15 +50,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tất cả các ví"
+        android:text="Tổng tiền tất cả"
         android:textColor="#E6FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/txtTotalMoney"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView3" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtTotalMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-2dp"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtMonthBefore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -84,28 +84,28 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtMonthNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="02/2022"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/txtMonthBefore"
+        app:layout_constraintEnd_toStartOf="@+id/txtMonthAfter"
+        app:layout_constraintStart_toEndOf="@+id/txtMonthBefore"
+        app:layout_constraintTop_toTopOf="@+id/txtMonthBefore" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtMonthAfter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="03/2022"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="@+id/txtMonthNow"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="@+id/txtMonthNow" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -115,7 +115,7 @@
         android:background="#D9242323"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/txtMonthNow">
 
         <TextView
             android:id="@+id/textView6"
@@ -130,7 +130,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/txtMonthInMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -141,7 +141,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView6" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/txtMonthTotalMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -150,11 +150,11 @@
             android:textColor="#E6FFFFFF"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintEnd_toEndOf="@+id/txtMonthOutMoney"
+            app:layout_constraintTop_toBottomOf="@+id/txtMonthOutMoney" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/txtMonthOutMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -162,7 +162,7 @@
             android:textColor="#E6FFFFFF"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/txtMonthInMoney" />
 
         <TextView
             android:id="@+id/textView7"
@@ -181,8 +181,8 @@
             android:layout_marginTop="4dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintStart_toStartOf="@+id/txtMonthInMoney"
+            app:layout_constraintTop_toBottomOf="@+id/txtMonthOutMoney" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView

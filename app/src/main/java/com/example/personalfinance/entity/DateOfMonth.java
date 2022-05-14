@@ -39,4 +39,40 @@ public class DateOfMonth {
     public void setSpendings(List<Spending> spendings) {
         this.spendings = spendings;
     }
+
+    public double totalMoneyInDate(){
+        double total = 0;
+        for (Spending item : this.spendings){
+            total += item.getMoney();
+        }
+        return  total;
+    }
+
+    public double totalInMoneyInDate(){
+        double total = 0;
+        for (Spending item : this.spendings){
+            if (item.getMoney()>=0)
+                total += item.getMoney();
+        }
+        return  total;
+    }
+
+    public double totalOutMoneyInDate(){
+        double total = 0;
+        for (Spending item : this.spendings){
+            if (item.getMoney()<0)
+                total += item.getMoney();
+        }
+        return  total;
+    }
+
+
+    @Override
+    public String toString() {
+        return "DateOfMonth{" +
+                "date=" + date +
+                ", day='" + day + '\'' +
+                ", spendings=" + spendings +
+                '}';
+    }
 }
