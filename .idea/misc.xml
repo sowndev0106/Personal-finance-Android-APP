@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ANDROID/School/PersonalFinance/app/src/main/res/layout/activity_home.xml" value="0.1675213675213675" />
+        <entry key="..\:/ANDROID/School/PersonalFinance/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/ANDROID/School/PersonalFinance/app/src/main/res/layout/activity_main.xml" value="0.21" />
+        <entry key="..\:/ANDROID/School/PersonalFinance/app/src/main/res/layout/spending_item.xml" value="0.25" />
       </map>
     </option>
   </component>
