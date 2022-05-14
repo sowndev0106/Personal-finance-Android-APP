@@ -81,8 +81,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
        txtTotalMoney.setText(formatter.format(user.totalMoney()) + " đ");
-       txtMonthInMoney.setText("+" +formatter.format(user.totalInMoney()) + " đ");
-       txtMonthOutMoney.setText(formatter.format(user.totalOutMoney()) + " đ");
+
+       txtMonthInMoney.setText("+" +formatter.format(monthOfYear.totalInMoneyInMonth()) + " đ");
+       txtMonthOutMoney.setText(formatter.format(monthOfYear.totalOutMoneyInMonth()) + " đ");
        double totalMonth = monthOfYear.totalInMoneyInMonth() + monthOfYear.totalOutMoneyInMonth();
        if (totalMonth>=0){
            txtMonthTotalMoney.setText("+" + formatter.format(totalMonth) + " đ");
