@@ -4,9 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.personalfinance.R;
 import com.example.personalfinance.adapter.DateAdapter;
@@ -21,10 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -33,13 +33,15 @@ public class HomeActivity extends AppCompatActivity {
     private TextView txtMonthOutMoney;
     private TextView txtMonthBefore;
     private TextView txtMonthAfter;
+    private ImageView imgNext;
+    private ImageView imgPrevious;
     private TextView txtMonthTotalMoney;
     private ListView listViewDate;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private User user;
     private MonthOfYear monthOfYear;
-    private  DateAdapter adapter;
+    private DateAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class HomeActivity extends AppCompatActivity {
         txtMonthBefore = findViewById(R.id.txtMonthBefore);
         txtMonthTotalMoney = findViewById(R.id.txtMonthTotalMoney);
         listViewDate  = findViewById(R.id.listviewDate);
+        imgNext = findViewById(R.id.imageNext);
+        imgPrevious = findViewById(R.id.imagePrevious);
 
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
@@ -62,12 +66,13 @@ public class HomeActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 loadDataFromFirebase(snapshot);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+
     }
 
     private void loadDataFromFirebase(DataSnapshot snapshot){
@@ -92,5 +97,7 @@ public class HomeActivity extends AppCompatActivity {
        }
 
     }
+
+
 
 }
