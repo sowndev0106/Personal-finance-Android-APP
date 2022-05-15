@@ -14,6 +14,15 @@
             android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.RegisterMain"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UserMain"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LoginMain"
+            android:exported="false" />
+        <activity
             android:name=".activity.UpdateSpending"
             android:exported="false" />
         <activity

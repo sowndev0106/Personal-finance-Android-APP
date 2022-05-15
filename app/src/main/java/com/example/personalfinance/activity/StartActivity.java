@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.personalfinance.R;
+import com.facebook.login.Login;
 
 public class StartActivity extends AppCompatActivity {
     private Button btnRegister, btnLogin;
@@ -27,7 +28,7 @@ public class StartActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartActivity.this,LoginMain.class);
+                Intent intent = new Intent(StartActivity.this, LoginMain.class);
                 startActivity(intent);
             }
         });

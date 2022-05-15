@@ -48,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private User user;
+    private ImageView imgUser;
     private MonthOfYear monthOfYear;
     private DateAdapter adapter;
     private int indexMonth = -1;
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
         listViewDate  = findViewById(R.id.listviewDate);
         imgNext = findViewById(R.id.imageNext);
         imgPrevious = findViewById(R.id.imagePrevious);
+        imgUser = findViewById(R.id.imgUser);
 
         formatter = new DecimalFormat("###,###,###");
 
@@ -118,6 +120,15 @@ public class HomeActivity extends AppCompatActivity {
                 addSpeding();
             }
         });
+        // user
+        imgUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,UserMain.class);
+                startActivity(intent);
+            }
+        });
+
     }
     private void addSpeding(){
         Intent intent = new Intent(HomeActivity.this, AddSpending.class);
