@@ -119,7 +119,7 @@ public class AddSpending extends AppCompatActivity {
         spendings.add(new Spending(new Date().getTime(),typeSpending.getName(), typeSpending.getImg(),description.getText().toString(), moneyDouble));
         System.out.println(monthOfYear);
         userRef.setValue(user);
-        super.onBackPressed();
+
     }
     private void addSpinner(){
         SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);

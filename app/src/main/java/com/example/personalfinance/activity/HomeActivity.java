@@ -50,7 +50,6 @@ public class HomeActivity extends AppCompatActivity {
     private DateAdapter adapter;
     private int indexMonth = -1;
     private DecimalFormat formatter;
-    private ImageView imgAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,6 @@ public class HomeActivity extends AppCompatActivity {
         listViewDate  = findViewById(R.id.listviewDate);
         imgNext = findViewById(R.id.imageNext);
         imgPrevious = findViewById(R.id.imagePrevious);
-        imgAdd = findViewById(R.id.imgAdd);
 
         formatter = new DecimalFormat("###,###,###");
 
@@ -111,16 +109,19 @@ public class HomeActivity extends AppCompatActivity {
                 imgPrevious.setEnabled(true);
             }
         });
-
-
-        imgAdd.setOnClickListener(new View.OnClickListener() {
+//        add spedding
+        findViewById(R.id.imgAdd).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, AddSpending.class));
+            public void onClick(View view) {
+                addSpeding();
             }
         });
-
-
+    }
+    private void addSpeding(){
+        Intent intent = new Intent(HomeActivity.this, AddSpending.class);
+        System.out.println(user.getUserName());
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 
     private void loadDataFromFirebase(DataSnapshot snapshot){
@@ -172,6 +173,4 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new DateAdapter(HomeActivity.this,R.layout.date_item,monthOfYear);
         listViewDate.setAdapter(adapter);
     }
-
-
 }

@@ -1,14 +1,17 @@
 package com.example.personalfinance.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.personalfinance.R;
+import com.example.personalfinance.activity.UpdateSpending;
 import com.example.personalfinance.entity.DateOfMonth;
 import com.example.personalfinance.entity.MonthOfYear;
 
@@ -76,8 +79,15 @@ public class DateAdapter extends BaseAdapter {
                 params.height = 196*date.getSpendings().size();
                 SpendingAdapter spendingAdapter = new SpendingAdapter(parent.getContext(),R.layout.spending_item,date.getSpendings());
                 listViewSpending.setAdapter(spendingAdapter);
-            }
+                listViewSpending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        System.out.println(i);
 
+//                        Intent intent = new Intent(context.this, UpdateSpending.class);
+                    }
+                });
+            }
         }
 
 
