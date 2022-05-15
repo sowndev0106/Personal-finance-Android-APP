@@ -65,7 +65,7 @@ public class RegisterMain extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Intent intent = new Intent(RegisterMain.this,LoginMain.class);
+                                Intent intent = new Intent(RegisterMain.this,HomeActivity.class);
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 User user = new User();
                                 String username = txtUser.getText().toString().trim();
