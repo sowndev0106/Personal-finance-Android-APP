@@ -1,6 +1,8 @@
 package com.example.personalfinance.entity;
 
-public class Spending {
+import java.io.Serializable;
+
+public class Spending implements Serializable {
     private long id;
     private String type;
     private int img;

@@ -3,16 +3,12 @@ package com.example.personalfinance.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -54,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
     private DateAdapter adapter;
     private int indexMonth = -1;
     private DecimalFormat formatter;
-    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,121 +65,12 @@ public class HomeActivity extends AppCompatActivity {
         listViewDate  = findViewById(R.id.listviewDate);
         imgNext = findViewById(R.id.imageNext);
         imgPrevious = findViewById(R.id.imagePrevious);
-        spinner  = findViewById(R.id.spinnerLanguage);
 
         formatter = new DecimalFormat("###,###,###");
 
 
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
-
-//
-//        List<Spending> spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        DateOfMonth date10_5 = new DateOfMonth(10,"Thứ ba",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        DateOfMonth date11_5 = new DateOfMonth(11,"Thứ tư",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        DateOfMonth date12_5 = new DateOfMonth(12,"Thứ năm",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Thu nhập", R.drawable.flat_color_icons_money_transfer,"Lãnh lương",200000));
-//        spendings.add(new Spending(new Date().getTime(),"Thu nhập", R.drawable.flat_color_icons_money_transfer,"Lãnh lương",200000));
-//        DateOfMonth date13_5 = new DateOfMonth(13,"Thứ sáu",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        DateOfMonth date14_5 = new DateOfMonth(14,"Thứ bảy",spendings);
-//
-//        List<DateOfMonth> months5s = new ArrayList<>();
-//        months5s.add(date10_5);
-//        months5s.add(date11_5);
-//        months5s.add(date12_5);
-//        months5s.add(date13_5);
-//        months5s.add(date14_5);
-//
-//        /////
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date10_5 = new DateOfMonth(10,"Thứ ba",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date11_5 = new DateOfMonth(11,"Thứ tư",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date12_5 = new DateOfMonth(12,"Thứ năm",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Thu nhập", R.drawable.flat_color_icons_money_transfer,"Lãnh lương",200000));
-//        spendings.add(new Spending(new Date().getTime(),"Thu nhập", R.drawable.flat_color_icons_money_transfer,"Lãnh lương",200000));
-//        date13_5 = new DateOfMonth(13,"Thứ sáu",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date14_5 = new DateOfMonth(14,"Thứ bảy",spendings);
-//
-//        List<DateOfMonth> month4s = new ArrayList<>();
-//        month4s.add(date10_5);
-//        month4s.add(date11_5);
-//        month4s.add(date12_5);
-//        month4s.add(date13_5);
-//        month4s.add(date14_5);
-//
-//        /////
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date10_5 = new DateOfMonth(10,"Thứ ba",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date11_5 = new DateOfMonth(11,"Thứ tư",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date12_5 = new DateOfMonth(12,"Thứ năm",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Thu nhập", R.drawable.flat_color_icons_money_transfer,"Lãnh lương",200000));
-//        spendings.add(new Spending(new Date().getTime(),"Thu nhập", R.drawable.flat_color_icons_money_transfer,"Lãnh lương",200000));
-//        date13_5 = new DateOfMonth(13,"Thứ sáu",spendings);
-//
-//        spendings = new ArrayList<>();
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        spendings.add(new Spending(new Date().getTime(),"Ăn uống", R.drawable.noto_pot_of_food,"Hủ tiếu",-20000));
-//        date14_5 = new DateOfMonth(14,"Thứ bảy",spendings);
-//
-//        List<DateOfMonth> month3s = new ArrayList<>();
-//        month3s.add(date10_5);
-//        month3s.add(date11_5);
-//        month3s.add(date12_5);
-//        month3s.add(date13_5);
-//        month3s.add(date14_5);
-//
-//        MonthOfYear month3_2022 = new MonthOfYear(2022,3,months5s);
-//        MonthOfYear month4_2022 = new MonthOfYear(2022,4,months5s);
-//        MonthOfYear month5_2022 = new MonthOfYear(2022,5,months5s);
-//
-//        User user1 = new User("Trung Ngoc", Arrays.asList(month3_2022,month4_2022,month5_2022));
-//
-//        userRef.setValue(user1);
-
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -221,6 +106,8 @@ public class HomeActivity extends AppCompatActivity {
                 imgPrevious.setEnabled(true);
             }
         });
+
+
 
 
     }
