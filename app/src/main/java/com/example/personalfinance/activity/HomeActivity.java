@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
-        userRef = database.getReference("users").child(firebaseAuth.getUid());
+        userRef = database.getReference("users").child(firebaseAuth.getUid()).child("fullName");
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
