@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class AddSpending extends AppCompatActivity {
+public  class UpdateSpending extends AppCompatActivity {
 
 
     private DatePickerDialog datePickerDialog;
@@ -44,7 +44,7 @@ public class AddSpending extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_spending);
+        setContentView(R.layout.activity_update_spending);
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
