@@ -70,7 +70,7 @@ public class RegisterMain extends AppCompatActivity {
                                 User user = new User();
                                 String username = txtUser.getText().toString().trim();
                                 user.setUserName(username);
-                                database.getReference("user").child(auth.getUid()).setValue(user);
+                                database.getReference("users").child(auth.getUid()).setValue(user);
                                 startActivity(intent);
                                 finishAffinity();
                             }

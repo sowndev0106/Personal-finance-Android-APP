@@ -170,6 +170,7 @@
             android:padding="10dp"
             android:textColor="#7F7E7E"
             android:textColorHint="#7F7E7E"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
