@@ -3,10 +3,12 @@ package com.example.personalfinance.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.personalfinance.R;
+import com.example.personalfinance.entity.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,6 +66,11 @@ public class RegisterMain extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Intent intent = new Intent(RegisterMain.this,LoginMain.class);
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                User user = new User();
+                                String username = txtUser.getText().toString().trim();
+                                user.setUserName(username);
+                                database.getReference("user").child(auth.getUid()).setValue(user);
                                 startActivity(intent);
                                 finishAffinity();
                             }
