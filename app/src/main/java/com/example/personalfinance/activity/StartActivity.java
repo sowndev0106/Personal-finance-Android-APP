@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.personalfinance.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class StartActivity extends AppCompatActivity {
     private Button btnRegister, btnLogin;
@@ -19,12 +19,15 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         btnRegister= findViewById(R.id.btn_start_register);
         btnLogin= findViewById(R.id.btn_start_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser()!=null){
+        if (firebaseAuth.getCurrentUser()!=null && !firebaseAuth.getCurrentUser().isAnonymous()){
             startActivity(new Intent(StartActivity.this,HomeActivity.class));
         }
 
