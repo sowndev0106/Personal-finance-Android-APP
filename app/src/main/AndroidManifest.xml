@@ -32,6 +32,12 @@
             android:name=".activity.AddSpending"
             android:exported="false" />
         <activity
+            android:name=".activity.RegisterMain"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LoginMain"
+            android:exported="false" />
+        <activity
             android:name=".activity.StartActivity"
             android:exported="true">
             <intent-filter>

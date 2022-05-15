@@ -9,6 +9,7 @@ import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
 import com.example.personalfinance.entity.TypeSpending;
 import com.example.personalfinance.entity.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +44,7 @@ public class AddSpending extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private User user;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -74,7 +76,8 @@ public class AddSpending extends AppCompatActivity {
 //        database
 
         database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
+        firebaseAuth = FirebaseAuth.getInstance();
+        userRef = database.getReference("users").child(firebaseAuth.getUid());
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,6 +89,17 @@ public class AddSpending extends AppCompatActivity {
             }
         });
 
+//        cancel
+        findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel();
+            }
+        });
+
+    }
+    private void cancel(){
+        super.onBackPressed();
     }
     private void saveSpending(View view){
 //        loop month of year
@@ -137,10 +151,13 @@ public class AddSpending extends AppCompatActivity {
         SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);
         typeSpendings = new ArrayList();
         typeSpendings.add(new TypeSpending( "Ăn uống",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Di chuyển",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Thuê nhà",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Nạp tiền",R.drawable.noto_pot_of_food, 1));
+        typeSpendings.add(new TypeSpending( "Di chuyển", R.drawable.emojione_v1_motorcycle, 0));
+        typeSpendings.add(new TypeSpending( "Thuê nhà", R.drawable.flat_color_icons_home, 0));
+        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...", R.drawable.icon_park_database_power, 0));
+        typeSpendings.add(new TypeSpending( "Đồ dùng, thiết bị", R.drawable.icon_park_weixin_market, 0));
+        typeSpendings.add(new TypeSpending( "Vui chơi", R.drawable.noto_man_playing_water_polo, 0));
+        typeSpendings.add(new TypeSpending( "Chi tiêu khác", R.drawable.icon_park_more_two, 0));
+        typeSpendings.add(new TypeSpending( "Tiền vào", R.drawable.emojione_atm_sign, 1));
         TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpendings);
         SpinnerTypeSpedding.setAdapter(adapter);
     }

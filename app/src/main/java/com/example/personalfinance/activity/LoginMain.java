@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginMain extends AppCompatActivity {
     private FirebaseAuth auth;
@@ -52,9 +53,7 @@ public class LoginMain extends AppCompatActivity {
                             finishAffinity();
                         }
                         else{
-                            Intent intent = new Intent(LoginMain.this,RegisterMain.class);
-                            startActivity(intent);
-                            finishAffinity();
+                            Toast.makeText(LoginMain.this, "Email or password invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

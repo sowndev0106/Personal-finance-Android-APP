@@ -82,15 +82,16 @@ public class DateAdapter extends BaseAdapter {
                 listViewSpending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        System.out.println(i);
-
-//                        Intent intent = new Intent(context.this, UpdateSpending.class);
+                        Intent intent = new Intent(context, UpdateSpending.class);
+                        intent.putExtra("spendingOld",date.getSpendings().get(i));
+                        intent.putExtra("day",date.getDate());
+                        intent.putExtra("month",monthOfYear.getMonth());
+                        intent.putExtra("year",monthOfYear.getYear());
+                        context.startActivity(intent);
                     }
                 });
             }
         }
-
-
         return convertView;
     }
 }
