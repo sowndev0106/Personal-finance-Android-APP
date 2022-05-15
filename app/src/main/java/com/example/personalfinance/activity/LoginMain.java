@@ -70,7 +70,7 @@ public class LoginMain extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginMain.this,RegisterMain.class);
+                Intent intent = new Intent(LoginMain.this,StartActivity.class);
                 startActivity(intent);
             }
         });

@@ -82,7 +82,7 @@ public class RegisterMain extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterMain.this,LoginMain.class);
+                Intent intent = new Intent(RegisterMain.this,StartActivity.class);
                 startActivity(intent);
             }
         });

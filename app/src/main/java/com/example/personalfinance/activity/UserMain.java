@@ -3,7 +3,6 @@ package com.example.personalfinance.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.personalfinance.R;
-
 import android.os.Bundle;
 
 public class UserMain extends AppCompatActivity {
