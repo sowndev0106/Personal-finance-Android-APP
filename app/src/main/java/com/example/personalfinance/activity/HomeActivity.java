@@ -3,6 +3,7 @@ package com.example.personalfinance.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -49,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     private DateAdapter adapter;
     private int indexMonth = -1;
     private DecimalFormat formatter;
+    private ImageView imgAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         listViewDate  = findViewById(R.id.listviewDate);
         imgNext = findViewById(R.id.imageNext);
         imgPrevious = findViewById(R.id.imagePrevious);
+        imgAdd = findViewById(R.id.imgAdd);
 
         formatter = new DecimalFormat("###,###,###");
 
@@ -108,6 +111,12 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+        imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, AddSpending.class));
+            }
+        });
 
 
     }
