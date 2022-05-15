@@ -89,12 +89,23 @@
         android:id="@+id/v_center"
         android:layout_width="410dp"
         android:layout_height="265dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="#0CFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/v_line" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="410dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
+        android:background="#0CFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/v_line3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/v_center"
+        app:layout_constraintTop_toBottomOf="@+id/v_center" />
 
     <View
         android:id="@+id/v_VND"
@@ -175,17 +186,6 @@
         app:layout_constraintTop_toBottomOf="@+id/v_line3"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="410dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="24dp"
-        android:background="#0CFFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/v_line3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/v_center"
-        app:layout_constraintTop_toBottomOf="@+id/v_center" />
-
     <TextView
         android:id="@+id/tv_delete"
         android:layout_width="wrap_content"
@@ -196,5 +196,15 @@
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="thứ 5 ngày 18 tháng 7 năm 2020"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_line" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

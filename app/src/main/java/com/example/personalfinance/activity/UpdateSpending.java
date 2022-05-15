@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,9 +36,6 @@ import java.util.List;
 
 public  class UpdateSpending extends AppCompatActivity {
 
-
-    private DatePickerDialog datePickerDialog;
-    private Button dateButton;
     private int year, month, day;
     private EditText money;
     private EditText description;
@@ -44,6 +45,8 @@ public  class UpdateSpending extends AppCompatActivity {
     private DatabaseReference userRef;
     private User user;
     private Spending spendingOld;
+    private TextView tv_date;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +61,7 @@ public  class UpdateSpending extends AppCompatActivity {
         findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteSpending(view);
+                showCofirm();
             }
         });
         findViewById(R.id.tv_save).setOnClickListener(new View.OnClickListener() {
@@ -94,6 +97,13 @@ public  class UpdateSpending extends AppCompatActivity {
                 cancel();
             }
         });
+
+
+        // set date in lable
+        LocalDate date = LocalDate.of(year, month, day);
+        DayOfWeek dayow = date.getDayOfWeek();
+        tv_date = findViewById(R.id.tv_date);
+        tv_date.setText(dayOfWeek(dayow.getValue())+" ngày "+day+" tháng "+ month +" năm "+year);
     }
     private void cancel(){
         super.onBackPressed();
@@ -112,7 +122,20 @@ public  class UpdateSpending extends AppCompatActivity {
         spinnerTypeSpending.setSelection(index);
 
     }
-    private void deleteSpending(View view){
+
+    public void showCofirm() {
+        new AlertDialog.Builder(this)
+                .setMessage("Xác nhận xóa chi tiêu")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        deleteSpending();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+    private void deleteSpending(){
         if(user.getMonthOfYears() == null){
             user.setMonthOfYears(new ArrayList<>());
         }
@@ -146,6 +169,11 @@ public  class UpdateSpending extends AppCompatActivity {
     }
 
     private void updateSpending(View view){
+        if(money.getText().toString().trim().equals("")){
+            Toast toast = Toast.makeText(UpdateSpending.this, "Vui lòng nhập số tiền", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
 //        loop month of year
         int lengthMonth = user.getMonthOfYears().size();
         MonthOfYear monthOfYear = null;
@@ -195,6 +223,17 @@ public  class UpdateSpending extends AppCompatActivity {
         TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpendings);
         spinnerTypeSpending.setAdapter(adapter);
     }
-
+    public String dayOfWeek(int i){
+        switch ( i ) {
+            case  1: return "Thứ hai";
+            case  2: return "Thứ ba";
+            case  3: return "Thứ tư";
+            case  4: return "Thứ năm";
+            case  5: return "Thứ sáu";
+            case  6: return "Thứ bảy";
+            case  7: return "Chủ nhật";
+            default: return "Chủ nhật";
+        }
+    }
 
 }
