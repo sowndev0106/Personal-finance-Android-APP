@@ -53,6 +53,8 @@ public class UserMain extends AppCompatActivity {
                 mAuth.signOut();
                 Intent intent = new Intent(UserMain.this,StartActivity.class);
                 startActivity(intent);
+                UserMain.this.finish();
+
             }
         });
 

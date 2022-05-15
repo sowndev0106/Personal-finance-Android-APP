@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,9 @@ public class LoginMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
+
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         txtEmail = findViewById(R.id.txtEmail_Login);
         txtPassword = findViewById(R.id.txtPassword_Login);
         btnLogin = findViewById(R.id.btnSignIn_Login);

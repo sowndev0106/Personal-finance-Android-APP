@@ -63,7 +63,12 @@ public class SpendingAdapter extends BaseAdapter {
         }else{
             txtMoney.setTextColor(Color.WHITE);
         }
-        img.setImageResource(spending.getImg());
+
+        try {
+            img.setImageResource(spending.getImg());
+        }catch (Exception e){
+
+        };
 
         return convertView;
     }

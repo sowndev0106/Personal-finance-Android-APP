@@ -3,6 +3,7 @@ package com.example.personalfinance.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.personalfinance.R;
+import com.example.personalfinance.database.Database;
 import com.example.personalfinance.entity.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +30,9 @@ public class RegisterMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         setContentView(R.layout.activity_register_main);
         txtEmail = findViewById(R.id.txtEmail_Register);
         txtPass = findViewById(R.id.txtPassword_Register);
@@ -66,7 +70,7 @@ public class RegisterMain extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Intent intent = new Intent(RegisterMain.this,HomeActivity.class);
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                FirebaseDatabase database = Database.getIntance();
                                 User user = new User();
                                 String username = txtUser.getText().toString().trim();
                                 user.setUserName(username);

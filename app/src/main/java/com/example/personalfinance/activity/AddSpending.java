@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.personalfinance.R;
 import com.example.personalfinance.adapter.TypeSpendingAdapter;
+import com.example.personalfinance.database.Database;
 import com.example.personalfinance.entity.DateOfMonth;
 import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
@@ -78,7 +79,7 @@ public class AddSpending extends AppCompatActivity {
 
 //        database
 
-        database = FirebaseDatabase.getInstance();
+        database = Database.getIntance();
 
         firebaseAuth = FirebaseAuth.getInstance();
         userRef = database.getReference("users").child(firebaseAuth.getUid());

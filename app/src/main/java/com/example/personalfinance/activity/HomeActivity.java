@@ -3,6 +3,7 @@ package com.example.personalfinance.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.personalfinance.R;
 import com.example.personalfinance.adapter.DateAdapter;
+import com.example.personalfinance.database.Database;
 import com.example.personalfinance.entity.DateOfMonth;
 import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
@@ -60,6 +62,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         txtTotalMoney = findViewById(R.id.txtTotalMoney);
         txtMonthInMoney = findViewById(R.id.txtMonthInMoney);
         txtMonthOutMoney = findViewById(R.id.txtMonthOutMoney);
@@ -75,13 +79,15 @@ public class HomeActivity extends AppCompatActivity {
         formatter = new DecimalFormat("###,###,###");
 
 
-        database = FirebaseDatabase.getInstance();
-        database.setPersistenceEnabled(true);
+        database = Database.getIntance();
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         DatabaseReference ref = database.getReference("users");
 
-        userRef = ref.child(firebaseAuth.getUid());
+        userRef = ref.child(firebaseAuth.getCurrentUser().getUid());
+
+
         userRef.keepSynced(true);
 
         userRef.addValueEventListener(new ValueEventListener() {
