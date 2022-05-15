@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".UserMain"
+            android:exported="false" />
+        <activity
             android:name=".GoogleMain"
             android:exported="false" />
 
