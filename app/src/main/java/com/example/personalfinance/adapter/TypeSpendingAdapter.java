@@ -11,24 +11,25 @@ import android.widget.TextView;
 
 import com.example.personalfinance.R;
 import com.example.personalfinance.entity.Spending;
+import com.example.personalfinance.entity.TypeSpending;
 
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class SpendingAdapter extends BaseAdapter {
+public class TypeSpendingAdapter extends BaseAdapter {
     private Context context;
     private int idLayout;
-    private List<Spending> spendings;
+    private List<TypeSpending> typeSpendings;
 
-    public SpendingAdapter(Context context, int idLayout, List<Spending> spendings) {
+    public TypeSpendingAdapter(Context context, int idLayout, List<TypeSpending> typeSpendings) {
         this.context = context;
         this.idLayout = idLayout;
-        this.spendings = spendings;
+        this.typeSpendings = typeSpendings;
     }
 
     @Override
     public int getCount() {
-       return spendings.size();
+       return typeSpendings.size();
     }
 
     @Override
@@ -46,25 +47,13 @@ public class SpendingAdapter extends BaseAdapter {
         if (convertView == null){
             convertView = LayoutInflater.from(parent.getContext()).inflate(idLayout,parent,false);
         }
-
-        TextView txtType = convertView.findViewById(R.id.tv_name);
-        TextView txtNote = convertView.findViewById(R.id.txtItemSpending_Note);
-        TextView txtMoney = convertView.findViewById(R.id.txtItemSpending_Money);
+        TextView txtName = convertView.findViewById(R.id.tv_name);
         ImageView img = convertView.findViewById(R.id.imageTypeSpending);
 
-        Spending spending = spendings.get(position);
+        TypeSpending typeSpending = typeSpendings.get(position);
 
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-
-        txtType.setText(spending.getType());
-        txtNote.setText(spending.getNote());
-        txtMoney.setText(formatter.format(Math.abs(spending.getMoney())));
-        if (spending.getMoney()<0){
-            txtMoney.setTextColor(Color.RED);
-        }else{
-            txtMoney.setTextColor(Color.WHITE);
-        }
-        img.setImageResource(spending.getImg());
+        txtName.setText(typeSpending.getName());
+        img.setImageResource(typeSpending.getImg());
 
         return convertView;
     }

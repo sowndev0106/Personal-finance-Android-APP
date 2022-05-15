@@ -78,7 +78,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
-        android:text="01/2022"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/img_BackRegister"
@@ -93,8 +92,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtMonthBefore"
-        app:layout_constraintEnd_toStartOf="@+id/txtMonthAfter"
-        app:layout_constraintStart_toEndOf="@+id/txtMonthBefore"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/txtMonthBefore" />
 
     <TextView
@@ -102,7 +101,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="03/2022"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtMonthNow"
@@ -199,7 +197,7 @@
         app:srcCompat="@drawable/ant_design_home_filled" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgAdd"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView7"
@@ -249,7 +247,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintBottom_toTopOf="@+id/imgAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
