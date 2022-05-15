@@ -25,7 +25,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,6 +79,7 @@ public class AddSpending extends AppCompatActivity {
 //        database
 
         database = FirebaseDatabase.getInstance();
+
         firebaseAuth = FirebaseAuth.getInstance();
         userRef = database.getReference("users").child(firebaseAuth.getUid());
         userRef.addValueEventListener(new ValueEventListener() {
@@ -101,6 +105,11 @@ public class AddSpending extends AppCompatActivity {
         super.onBackPressed();
     }
     private void saveSpending(View view){
+        if(money.getText().toString().trim().equals("")){
+            Toast toast = Toast.makeText(AddSpending.this, "Vui lòng nhập số tiền", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
 //        loop month of year
         if(user.getMonthOfYears() == null){
             user.setMonthOfYears(new ArrayList<>());
@@ -119,7 +128,6 @@ public class AddSpending extends AppCompatActivity {
             user.getMonthOfYears().add(monthOfYear);
         }
         System.out.println(monthOfYear);
-
 //        loop date of month
         int lengthDate = monthOfYear.getDateOfMonths().size();
         List<Spending> spendings = null;
@@ -130,7 +138,9 @@ public class AddSpending extends AppCompatActivity {
         }
         if(spendings == null){
             spendings = new ArrayList<>();
-            monthOfYear.getDateOfMonths().add(new DateOfMonth(day, "Chủ nhật", spendings));
+            LocalDate date = LocalDate.of(year, month, day);
+            DayOfWeek dayow = date.getDayOfWeek();
+            monthOfYear.getDateOfMonths().add(new DateOfMonth(day, dayOfWeek(dayow.getValue()), spendings));
         }
 
 //        add speding //      default nạp tiền
@@ -150,13 +160,14 @@ public class AddSpending extends AppCompatActivity {
         SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);
         typeSpendings = new ArrayList();
         typeSpendings.add(new TypeSpending( "Ăn uống",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Di chuyển", R.drawable.emojione_v1_motorcycle, 0));
-        typeSpendings.add(new TypeSpending( "Thuê nhà", R.drawable.flat_color_icons_home, 0));
-        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...", R.drawable.icon_park_database_power, 0));
-        typeSpendings.add(new TypeSpending( "Đồ dùng, thiết bị", R.drawable.icon_park_weixin_market, 0));
-        typeSpendings.add(new TypeSpending( "Vui chơi", R.drawable.noto_man_playing_water_polo, 0));
-        typeSpendings.add(new TypeSpending( "Chi tiêu khác", R.drawable.icon_park_more_two, 0));
-        typeSpendings.add(new TypeSpending( "Tiền vào", R.drawable.emojione_atm_sign, 1));
+        typeSpendings.add(new TypeSpending( "Di chuyển",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Thuê nhà",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Đồ dùng, thiết bị",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Vui chơi",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Chi tiêu khác",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Lương",R.drawable.noto_pot_of_food, 1));
+        typeSpendings.add(new TypeSpending( "Thu nhập khác",R.drawable.noto_pot_of_food, 1));
         TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpendings);
         SpinnerTypeSpedding.setAdapter(adapter);
     }
@@ -239,6 +250,18 @@ public class AddSpending extends AppCompatActivity {
         return "JAN";
     }
 
+    public String dayOfWeek(int i){
+            switch ( i ) {
+                case  1: return "Thứ hai";
+                case  2: return "Thứ ba";
+                case  3: return "Thứ tư";
+                case  4: return "Thứ năm";
+                case  5: return "Thứ sáu";
+                case  6: return "Thứ bảy";
+                case  7: return "Chủ nhật";
+                default: return "Chủ nhật";
+            }
+    }
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
