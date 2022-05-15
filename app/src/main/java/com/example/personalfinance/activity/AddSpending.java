@@ -216,7 +216,9 @@ public class AddSpending extends AppCompatActivity {
 
     private String makeDateString(int day, int month, int year)
     {
-        return getMonthFormat(month) + " " + day + " " + year;
+        LocalDate date = LocalDate.of(year, month, day);
+        DayOfWeek dayow = date.getDayOfWeek();
+        return dayOfWeek(dayow.getValue())+" ngày "+day+" tháng "+ month +" năm "+year;
     }
 
     private String getMonthFormat(int month)
