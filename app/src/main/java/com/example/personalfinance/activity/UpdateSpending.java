@@ -34,21 +34,19 @@ public  class UpdateSpending extends AppCompatActivity {
     private int year, month, day;
     private EditText money;
     private EditText description;
-    private Spinner SpinnerTypeSpedding;
-    private  ArrayList<TypeSpending> typeSpendings;
+    private Spinner SpinnerTypeSpending;
+    private  ArrayList<TypeSpending> typeSpending;
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private User user;
+    private Spending spendingOld;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_spending);
-        initDatePicker();
-        dateButton = findViewById(R.id.datePickerButton);
-        dateButton.setText(getTodaysDate());
-
+        getTodaysDate();
         TextView tvSaveBot = findViewById(R.id.tv_save_bot);
         money = findViewById(R.id.et_money);
         description = findViewById(R.id.et_description);
@@ -57,13 +55,13 @@ public  class UpdateSpending extends AppCompatActivity {
         tvSaveBot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveSpending( view);
+                updateSpending( view);
             }
         });
-        findViewById(R.id.tv_save).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.tv_delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveSpending( view);
+                deleteSpending(view);
             }
         });
 
@@ -72,10 +70,43 @@ public  class UpdateSpending extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
         user = (User) getIntent().getSerializableExtra("user");
+        spendingOld = (Spending) getIntent().getSerializableExtra("spendingOld");
 
 
     }
-    private void saveSpending(View view){
+    private void deleteSpending(View view){
+        if(user.getMonthOfYears() == null){
+            user.setMonthOfYears(new ArrayList<>());
+        }
+        List<Spending> spendingsNew = new ArrayList<>();
+
+        int lengthMonth = user.getMonthOfYears().size();
+        MonthOfYear monthOfYear = null;
+
+        for (int i = 0; i <lengthMonth ; i++) {
+            if( user.getMonthOfYears().get(i).getYear() == year  &&  user.getMonthOfYears().get(i).getMonth() == month ){
+                monthOfYear =  user.getMonthOfYears().get(i);
+                break;
+            }
+        }
+        DateOfMonth dateOfMonthOld = null;
+        for (DateOfMonth dateOfMonth: monthOfYear.getDateOfMonths()){
+            if(dateOfMonth.getDate() == day){
+                dateOfMonthOld = dateOfMonth;
+            }
+        }
+        for (Spending spending: dateOfMonthOld.getSpendings()){
+            // remove element
+            if(spending.getId() != spendingOld.getId()){
+                spendingsNew.add(spending);
+            }
+        }
+        dateOfMonthOld.setSpendings(spendingsNew);
+        userRef.setValue(user);
+        super.onBackPressed();
+    }
+
+    private void updateSpending(View view){
 //        loop month of year
         if(user.getMonthOfYears() == null){
             user.setMonthOfYears(new ArrayList<>());
@@ -93,8 +124,6 @@ public  class UpdateSpending extends AppCompatActivity {
             monthOfYear =  new MonthOfYear(year,month,new ArrayList<>());
             user.getMonthOfYears().add(monthOfYear);
         }
-        System.out.println(monthOfYear);
-
 //        loop date of month
         int lengthDate = monthOfYear.getDateOfMonths().size();
         List<Spending> spendings = null;
@@ -108,8 +137,8 @@ public  class UpdateSpending extends AppCompatActivity {
             monthOfYear.getDateOfMonths().add(new DateOfMonth(day, "Chủ nhật", spendings));
         }
 
-//        add speding //      default nạp tiền
-        TypeSpending typeSpending =  typeSpendings.get(SpinnerTypeSpedding.getSelectedItemPosition());
+//        add speding //
+        TypeSpending typeSpending =  this.typeSpending.get(SpinnerTypeSpending.getSelectedItemPosition());
 
         double moneyDouble = Double.parseDouble(money.getText().toString());
         if(typeSpending.getType()==0){
@@ -122,17 +151,17 @@ public  class UpdateSpending extends AppCompatActivity {
 
     }
     private void addSpinner(){
-        SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);
-        typeSpendings = new ArrayList();
-        typeSpendings.add(new TypeSpending( "Ăn uống",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Di chuyển",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Thuê nhà",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Nạp tiền",R.drawable.noto_pot_of_food, 1));
-        TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpendings);
-        SpinnerTypeSpedding.setAdapter(adapter);
+        SpinnerTypeSpending =  findViewById(R.id.typeSpedding);
+        typeSpending = new ArrayList();
+        typeSpending.add(new TypeSpending( "Ăn uống",R.drawable.noto_pot_of_food, 0));
+        typeSpending.add(new TypeSpending( "Di chuyển",R.drawable.noto_pot_of_food, 0));
+        typeSpending.add(new TypeSpending( "Thuê nhà",R.drawable.noto_pot_of_food, 0));
+        typeSpending.add(new TypeSpending( "Tiền điện, nước, gas...",R.drawable.noto_pot_of_food, 0));
+        typeSpending.add(new TypeSpending( "Nạp tiền",R.drawable.noto_pot_of_food, 1));
+        TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpending);
+        SpinnerTypeSpending.setAdapter(adapter);
     }
-    private String getTodaysDate()
+    private void getTodaysDate()
     {
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -142,77 +171,6 @@ public  class UpdateSpending extends AppCompatActivity {
         this.month = month;
         this.year = year;
         this.day = day;
-        return makeDateString(day, month, year);
-
     }
 
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year1, int month1, int day1)
-            {
-                month1 = month1 + 1;
-                String date = makeDateString(day1, month1, year1);
-                dateButton.setText(date);
-                year  = year1;
-                month = month1;
-                day = day1;
-            }
-        };
-
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
-
-    }
-
-    private String makeDateString(int day, int month, int year)
-    {
-        return getMonthFormat(month) + " " + day + " " + year;
-    }
-
-    private String getMonthFormat(int month)
-    {
-        if(month == 1)
-            return "JAN";
-        if(month == 2)
-            return "FEB";
-        if(month == 3)
-            return "MAR";
-        if(month == 4)
-            return "APR";
-        if(month == 5)
-            return "MAY";
-        if(month == 6)
-            return "JUN";
-        if(month == 7)
-            return "JUL";
-        if(month == 8)
-            return "AUG";
-        if(month == 9)
-            return "SEP";
-        if(month == 10)
-            return "OCT";
-        if(month == 11)
-            return "NOV";
-        if(month == 12)
-            return "DEC";
-
-        //default should never happen
-        return "JAN";
-    }
-
-    public void openDatePicker(View view)
-    {
-        datePickerDialog.show();
-    }
 }

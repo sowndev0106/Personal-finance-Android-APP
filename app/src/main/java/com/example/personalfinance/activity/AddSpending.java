@@ -1,5 +1,6 @@
 package com.example.personalfinance.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.personalfinance.R;
 import com.example.personalfinance.adapter.TypeSpendingAdapter;
@@ -8,11 +9,15 @@ import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
 import com.example.personalfinance.entity.TypeSpending;
 import com.example.personalfinance.entity.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -71,7 +76,17 @@ public class AddSpending extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
-        user = (User) getIntent().getSerializableExtra("user");
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
@@ -118,8 +133,8 @@ public class AddSpending extends AppCompatActivity {
         }
         spendings.add(new Spending(new Date().getTime(),typeSpending.getName(), typeSpending.getImg(),description.getText().toString(), moneyDouble));
         System.out.println(monthOfYear);
+        super.onBackPressed();
         userRef.setValue(user);
-
     }
     private void addSpinner(){
         SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);
@@ -131,6 +146,7 @@ public class AddSpending extends AppCompatActivity {
         typeSpendings.add(new TypeSpending( "Nạp tiền",R.drawable.noto_pot_of_food, 1));
         TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpendings);
         SpinnerTypeSpedding.setAdapter(adapter);
+
     }
     private String getTodaysDate()
     {
@@ -143,7 +159,6 @@ public class AddSpending extends AppCompatActivity {
         this.year = year;
         this.day = day;
         return makeDateString(day, month, year);
-
     }
 
     private void initDatePicker()
