@@ -9,6 +9,7 @@ import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
 import com.example.personalfinance.entity.TypeSpending;
 import com.example.personalfinance.entity.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +47,7 @@ public class AddSpending extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference userRef;
     private User user;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,7 +79,9 @@ public class AddSpending extends AppCompatActivity {
 //        database
 
         database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        userRef = database.getReference("users").child(firebaseAuth.getUid());
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -9,6 +9,7 @@ import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
 import com.example.personalfinance.entity.TypeSpending;
 import com.example.personalfinance.entity.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +21,6 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -46,7 +45,7 @@ public  class UpdateSpending extends AppCompatActivity {
     private User user;
     private Spending spendingOld;
     private TextView tv_date;
-
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,7 +72,9 @@ public  class UpdateSpending extends AppCompatActivity {
 
 //        database
         database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        userRef = database.getReference("users").child(firebaseAuth.getUid());
         spendingOld = (Spending) getIntent().getSerializableExtra("spendingOld");
         month = (int) getIntent().getSerializableExtra("month");
         year = (int) getIntent().getSerializableExtra("year");
@@ -109,7 +110,7 @@ public  class UpdateSpending extends AppCompatActivity {
         super.onBackPressed();
     }
     private void showData(){
-        money.setText(Math.abs(spendingOld.getMoney())+"");
+        money.setText(String.format("%.0f", Math.abs(spendingOld.getMoney())));
         description.setText(spendingOld.getNote());
         int index = 0;
         for(TypeSpending typeSpending:typeSpendings){
