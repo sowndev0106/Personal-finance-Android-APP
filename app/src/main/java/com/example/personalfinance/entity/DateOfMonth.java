@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DateOfMonth implements Serializable {
+public class DateOfMonth implements Serializable,Comparable<DateOfMonth> {
     private int date;
     private String day;
     private List<Spending> spendings = new ArrayList<>();
@@ -76,5 +76,11 @@ public class DateOfMonth implements Serializable {
                 ", day='" + day + '\'' +
                 ", spendings=" + spendings +
                 '}';
+    }
+
+    @Override
+    public int compareTo(DateOfMonth dateOfMonth) {
+        // sort student's name by ASC
+        return this.getDate()>=dateOfMonth.getDate()?1:-1;
     }
 }
