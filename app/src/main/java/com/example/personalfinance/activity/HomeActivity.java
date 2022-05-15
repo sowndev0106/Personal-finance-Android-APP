@@ -117,6 +117,8 @@ public class HomeActivity extends AppCompatActivity {
     }
     private void addSpeding(){
         Intent intent = new Intent(HomeActivity.this, AddSpending.class);
+        System.out.println(user.getUserName());
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 

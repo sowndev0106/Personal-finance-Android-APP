@@ -28,15 +28,6 @@
         app:srcCompat="@drawable/vector" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:srcCompat="@drawable/bxs_down_arrow" />
-
-    <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,12 +41,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tổng tiền tất cả"
+        android:text="@string/txtTongTien"
         android:textColor="#E6FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/txtTotalMoney"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/txtTotalMoney"
@@ -271,5 +262,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/txtMonthBefore"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtMonthBefore" />
+
+    <Spinner
+        android:id="@+id/spinnerLanguage"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/languages"
+        android:gravity="right|fill_horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
