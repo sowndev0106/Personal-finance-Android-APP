@@ -73,8 +73,6 @@ public class HomeActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
 
-        userRef.keepSynced(true);
-
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
