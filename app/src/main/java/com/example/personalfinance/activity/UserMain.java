@@ -1,11 +1,15 @@
 package com.example.personalfinance.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.personalfinance.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,14 +35,31 @@ public class UserMain extends AppCompatActivity {
         FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
         txtEmail.setText(mFirebaseUser.getEmail());
         database = FirebaseDatabase.getInstance();
-        String name  = database.getReference("users").child(mAuth.getUid()).child("userName").toString();
-        txtName.setText(name);
+        database.getReference("users").child(mAuth.getUid()).child("userName").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                txtName.setText(snapshot.getValue().toString().trim());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
                 Intent intent = new Intent(UserMain.this,StartActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.imageUserBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserMain.this,HomeActivity.class));
             }
         });
 

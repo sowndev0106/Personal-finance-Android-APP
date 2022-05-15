@@ -160,14 +160,13 @@ public class AddSpending extends AppCompatActivity {
         SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);
         typeSpendings = new ArrayList();
         typeSpendings.add(new TypeSpending( "Ăn uống",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Di chuyển",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Thuê nhà",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Đồ dùng, thiết bị",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Vui chơi",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Chi tiêu khác",R.drawable.noto_pot_of_food, 0));
-        typeSpendings.add(new TypeSpending( "Lương",R.drawable.noto_pot_of_food, 1));
-        typeSpendings.add(new TypeSpending( "Thu nhập khác",R.drawable.noto_pot_of_food, 1));
+        typeSpendings.add(new TypeSpending( "Di chuyển", R.drawable.emojione_v1_motorcycle, 0));
+        typeSpendings.add(new TypeSpending( "Thuê nhà", R.drawable.flat_color_icons_home, 0));
+        typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...", R.drawable.icon_park_database_power, 0));
+        typeSpendings.add(new TypeSpending( "Đồ dùng, thiết bị", R.drawable.icon_park_weixin_market, 0));
+        typeSpendings.add(new TypeSpending( "Vui chơi", R.drawable.noto_man_playing_water_polo, 0));
+        typeSpendings.add(new TypeSpending( "Chi tiêu khác", R.drawable.icon_park_more_two, 0));
+        typeSpendings.add(new TypeSpending( "Tiền vào", R.drawable.emojione_atm_sign, 1));
         TypeSpendingAdapter adapter = new TypeSpendingAdapter(this, R.layout.type_speding_item, typeSpendings);
         SpinnerTypeSpedding.setAdapter(adapter);
     }
