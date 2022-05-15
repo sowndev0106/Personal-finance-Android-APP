@@ -55,7 +55,6 @@ public class SpendingAdapter extends BaseAdapter {
         Spending spending = spendings.get(position);
 
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-
         txtType.setText(spending.getType());
         txtNote.setText(spending.getNote());
         txtMoney.setText(formatter.format(Math.abs(spending.getMoney())));
