@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MonthOfYear implements Serializable {
+public class MonthOfYear implements Serializable, Comparable<MonthOfYear> {
     private int year;
     private int month;
     private List<DateOfMonth> dateOfMonths =  new ArrayList<>();
@@ -73,5 +73,16 @@ public class MonthOfYear implements Serializable {
                 ", month=" + month +
                 ", dateOfMonths=" + dateOfMonths +
                 '}';
+    }
+
+    @Override
+    public int compareTo(MonthOfYear monthOfYear) {
+        if (this.getYear()>monthOfYear.getYear()){
+            return 1;
+        }else if (this.getYear()<monthOfYear.getYear()){
+            return -1;
+        }else{
+            return this.getMonth()>=monthOfYear.getMonth()?1:-1;
+        }
     }
 }
