@@ -117,7 +117,7 @@ public class AddSpending extends AppCompatActivity {
             moneyDouble = -moneyDouble;
         }
         spendings.add(new Spending(new Date().getTime(),typeSpending.getName(), typeSpending.getImg(),description.getText().toString(), moneyDouble));
-        System.out.println(monthOfYear);
+        super.onBackPressed();
         userRef.setValue(user);
 
     }
