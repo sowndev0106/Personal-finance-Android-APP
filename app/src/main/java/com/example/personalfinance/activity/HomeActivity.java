@@ -19,6 +19,7 @@ import com.example.personalfinance.entity.DateOfMonth;
 import com.example.personalfinance.entity.MonthOfYear;
 import com.example.personalfinance.entity.Spending;
 import com.example.personalfinance.entity.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     private DateAdapter adapter;
     private int indexMonth = -1;
     private DecimalFormat formatter;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
         database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("users").child("QvDrtYaWYOSiONP3u25ivw7Wp5a2");
+        firebaseAuth = FirebaseAuth.getInstance();
+        userRef = database.getReference("users").child(firebaseAuth.getUid());
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -122,6 +126,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private void loadDataFromFirebase(DataSnapshot snapshot){
        user = snapshot.getValue(User.class);
+
+       if (user == null || user.getMonthOfYears() == null || user.getMonthOfYears().isEmpty())
+           return;
+
        indexMonth  = user.getMonthOfYears().size()-1;
 
        imgNext.setEnabled(false);
@@ -157,6 +165,10 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         monthOfYear = user.getMonthOfYears().get(indexMonth);
+
+        if (monthOfYear.getDateOfMonths()!=null){
+            Collections.sort(monthOfYear.getDateOfMonths());
+        }
 
         txtMonthNow.setText(monthOfYear.getMonth()+ "/" + monthOfYear.getYear());
         txtMonthInMoney.setText("+" +formatter.format(monthOfYear.totalInMoneyInMonth()) + " đ");
