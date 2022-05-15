@@ -80,7 +80,7 @@ public class DateOfMonth implements Serializable,Comparable<DateOfMonth> {
 
     @Override
     public int compareTo(DateOfMonth dateOfMonth) {
-        // sort student's name by ASC
+
         return this.getDate()>=dateOfMonth.getDate()?1:-1;
     }
 }

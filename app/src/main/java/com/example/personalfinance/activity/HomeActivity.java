@@ -162,6 +162,8 @@ public class HomeActivity extends AppCompatActivity {
 
            txtTotalMoney.setText(formatter.format(user.totalMoney()) + " đ");
 
+           Collections.sort(user.getMonthOfYears());
+
            loadDataInMonth();
        }
 
