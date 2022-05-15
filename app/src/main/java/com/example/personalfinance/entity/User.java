@@ -1,8 +1,9 @@
 package com.example.personalfinance.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private String userName;
     private List<MonthOfYear>  monthOfYears;
 

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AddSpending">
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Hủy"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm giao dịch"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_cancel"
+        app:layout_constraintEnd_toStartOf="@+id/tv_save"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toEndOf="@+id/tv_cancel"
+        app:layout_constraintTop_toTopOf="@+id/tv_cancel"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Lưu"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:id="@+id/v_line"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#11FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <View
+        android:id="@+id/v_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#11FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/et_money"
+        app:layout_constraintTop_toBottomOf="@+id/et_money" />
+
+    <View
+        android:id="@+id/v_line3"
+        android:layout_width="325dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#11FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/et_money"
+        app:layout_constraintTop_toBottomOf="@+id/typeSpedding" />
+
+    <View
+        android:id="@+id/v_line4"
+        android:layout_width="325dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#11FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/v_line3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <View
+        android:id="@+id/v_center"
+        android:layout_width="411dp"
+        android:layout_height="316dp"
+        android:layout_marginTop="8dp"
+        android:background="#0CFFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_line" />
+
+    <View
+        android:id="@+id/v_VND"
+        android:layout_width="55dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border_white"
+        app:layout_constraintStart_toStartOf="@+id/tv_cancel"
+        app:layout_constraintTop_toTopOf="@+id/v_center" />
+
+    <TextView
+        android:id="@+id/tv_VND"
+        android:layout_width="30dp"
+        android:layout_height="21dp"
+        android:text="VND"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/v_VND"
+        app:layout_constraintEnd_toEndOf="@+id/v_VND"
+        app:layout_constraintStart_toStartOf="@+id/v_VND"
+        app:layout_constraintTop_toTopOf="@+id/v_VND" />
+
+    <TextView
+        android:id="@+id/tv_title_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Số tiền"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/v_VND"
+        app:layout_constraintTop_toTopOf="@+id/v_center" />
+
+    <EditText
+        android:id="@+id/et_money"
+        android:layout_width="323dp"
+        android:layout_height="35dp"
+        android:background="@drawable/un_border_input"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/v_VND"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_money"
+        app:layout_constraintTop_toTopOf="@+id/v_VND"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="323dp"
+        android:layout_height="50dp"
+        android:onClick="openDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/v_line4"
+        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+    <Spinner
+        android:id="@+id/typeSpedding"
+        style="?android:spinnerStyle"
+        android:layout_width="394dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/un_border_input"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="@+id/v_VND"
+        app:layout_constraintTop_toBottomOf="@+id/v_line2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="25dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/v_VND"
+        app:layout_constraintStart_toStartOf="@+id/typeSpedding"
+        app:layout_constraintTop_toBottomOf="@+id/v_line3"
+        app:srcCompat="@drawable/calendar2" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="22dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        app:srcCompat="@drawable/calendar3" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="323dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/un_border_input"
+        android:gravity="top|center_vertical"
+        android:inputType="text|textMultiLine"
+        app:layout_constraintStart_toStartOf="@+id/v_line3"
+        app:layout_constraintTop_toBottomOf="@+id/v_line3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="410dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:background="#0CFFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/v_line3"
+        app:layout_constraintStart_toStartOf="@+id/v_center"
+        app:layout_constraintTop_toBottomOf="@+id/v_center" />
+
+    <TextView
+        android:id="@+id/tv_save_bot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm chi tiêu"
+        android:textColor="#2BDD32"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

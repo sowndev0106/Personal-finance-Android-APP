@@ -3,6 +3,7 @@ package com.example.personalfinance.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -106,10 +107,19 @@ public class HomeActivity extends AppCompatActivity {
                 imgPrevious.setEnabled(true);
             }
         });
-
-
-
-
+//        add spedding
+        findViewById(R.id.imgAdd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addSpeding();
+            }
+        });
+    }
+    private void addSpeding(){
+        Intent intent = new Intent(HomeActivity.this, AddSpending.class);
+        System.out.println(user.getUserName());
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 
     private void loadDataFromFirebase(DataSnapshot snapshot){
@@ -161,6 +171,4 @@ public class HomeActivity extends AppCompatActivity {
         adapter = new DateAdapter(HomeActivity.this,R.layout.date_item,monthOfYear);
         listViewDate.setAdapter(adapter);
     }
-
-
 }
