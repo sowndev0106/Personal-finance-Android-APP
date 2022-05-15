@@ -87,6 +87,16 @@ public  class UpdateSpending extends AppCompatActivity {
             }
         });
         showData();
+        //        cancel
+        findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel();
+            }
+        });
+    }
+    private void cancel(){
+        super.onBackPressed();
     }
     private void showData(){
         money.setText(Math.abs(spendingOld.getMoney())+"");

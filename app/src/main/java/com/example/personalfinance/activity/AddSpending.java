@@ -86,6 +86,17 @@ public class AddSpending extends AppCompatActivity {
             }
         });
 
+//        cancel
+        findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancel();
+            }
+        });
+
+    }
+    private void cancel(){
+        super.onBackPressed();
     }
     private void saveSpending(View view){
 //        loop month of year
