@@ -14,14 +14,16 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterMain extends AppCompatActivity {
     private FirebaseAuth auth;
-    private EditText txtEmail,txtPass;
+    private EditText txtEmail,txtPass,txtUser;
     private Button btnRegister;
     private TextView txtLogin;
+    private ImageButton imgBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class RegisterMain extends AppCompatActivity {
         txtPass = findViewById(R.id.txtPassword_Register);
         btnRegister = findViewById(R.id.btn_RegisterSignUp);
         txtLogin = findViewById(R.id.txt_RegisterSignIn);
+        txtUser = findViewById(R.id.txtUserName);
+        imgBack = findViewById(R.id.img_BackRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +73,13 @@ public class RegisterMain extends AppCompatActivity {
             }
         });
         txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterMain.this,LoginMain.class);
+                startActivity(intent);
+            }
+        });
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(RegisterMain.this,LoginMain.class);
