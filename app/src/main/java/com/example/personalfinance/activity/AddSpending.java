@@ -88,7 +88,6 @@ public class AddSpending extends AppCompatActivity {
 
             }
         });
-
 //        cancel
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
