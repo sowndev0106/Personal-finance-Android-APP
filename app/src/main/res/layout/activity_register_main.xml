@@ -27,6 +27,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/radiusbutton"
         android:drawableLeft="@drawable/logos_facebook"
+        android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:text="Connect with Facebook"
         android:textAllCaps="false"
@@ -44,6 +45,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/radiusbutton"
         android:drawableLeft="@drawable/flat_color_icons_google"
+        android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:text="Connect with Google"
         android:textAllCaps="false"
@@ -61,6 +63,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/radiusbutton"
         android:drawableLeft="@drawable/bi_apple"
+        android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:text="Connect with Apple"
         android:textAllCaps="false"
@@ -144,7 +147,7 @@
             android:drawableRight="@drawable/bi_eye_fill"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="#7F7E7E"
             android:textColorHint="#7F7E7E"
@@ -154,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtEmail_Register" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btn_RegisterSignUp"
         android:layout_width="346dp"
         android:layout_height="50dp"
@@ -183,9 +186,10 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_RegisterSignUp" />
 
     <ImageButton
-        android:id="@+id/imageView"
+        android:id="@+id/img_BackRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
         android:contentDescription="@string/app_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

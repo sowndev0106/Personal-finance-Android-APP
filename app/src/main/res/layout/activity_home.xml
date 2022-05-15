@@ -8,7 +8,7 @@
     tools:context=".activity.HomeActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_BackRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -31,9 +31,9 @@
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/img_BackRegister"
+        app:layout_constraintStart_toEndOf="@+id/img_BackRegister"
+        app:layout_constraintTop_toTopOf="@+id/img_BackRegister"
         app:srcCompat="@drawable/bxs_down_arrow" />
 
     <ImageView
@@ -41,9 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/img_BackRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/img_BackRegister"
         app:srcCompat="@drawable/group" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/img_BackRegister"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="@+id/textView" />
@@ -81,8 +81,8 @@
         android:text="01/2022"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/img_BackRegister"
+        app:layout_constraintTop_toBottomOf="@+id/img_BackRegister" />
 
     <TextView
         android:id="@+id/txtMonthNow"
