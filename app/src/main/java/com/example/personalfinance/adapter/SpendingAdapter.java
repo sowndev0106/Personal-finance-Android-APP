@@ -1,6 +1,7 @@
 package com.example.personalfinance.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.personalfinance.R;
+import com.example.personalfinance.activity.HomeActivity;
 import com.example.personalfinance.entity.Spending;
 
 import java.text.DecimalFormat;
@@ -65,7 +67,9 @@ public class SpendingAdapter extends BaseAdapter {
         }
 
         try {
-            img.setImageResource(spending.getImg());
+            Resources resources = HomeActivity.getContext().getResources();
+            int resId = resources.getIdentifier(spending.getImg(), "drawable", "com.example.personalfinance");
+            img.setImageResource(resId);
         }catch (Exception e){
 
         };

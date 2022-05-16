@@ -1,5 +1,11 @@
 package com.example.personalfinance.entity;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import com.example.personalfinance.R;
+import com.example.personalfinance.activity.HomeActivity;
+
 import java.io.Serializable;
 
 public class TypeSpending implements Serializable {
@@ -41,6 +47,13 @@ public class TypeSpending implements Serializable {
     public void setImg(int img) {
         this.img = img;
     }
+
+    public String getImgName(){
+        Resources resources = HomeActivity.getContext().getResources();
+        String name = resources.getResourceEntryName(this.img);
+        return name;
+    }
+
 
     @Override
     public String toString() {

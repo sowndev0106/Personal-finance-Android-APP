@@ -204,7 +204,7 @@ public  class UpdateSpending extends AppCompatActivity {
 
         for (Spending spending: spendings){
             if(spending.getId() == spendingOld.getId()){
-                spending.setImg(typeSpending.getImg());
+                spending.setImg(typeSpending.getImgName());
                 spending.setType(typeSpending.getName());
                 spending.setNote(description.getText().toString());
                 spending.setMoney(moneyDouble);

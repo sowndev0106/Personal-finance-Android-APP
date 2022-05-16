@@ -77,7 +77,7 @@ public class AddSpending extends AppCompatActivity {
             }
         });
 
-//        database
+//       database
 
         database = Database.getIntance();
 
@@ -152,7 +152,7 @@ public class AddSpending extends AppCompatActivity {
             // chi tiêu
             moneyDouble = -moneyDouble;
         }
-        spendings.add(new Spending(new Date().getTime(),typeSpending.getName(), typeSpending.getImg(),description.getText().toString(), moneyDouble));
+        spendings.add(new Spending(new Date().getTime(),typeSpending.getName(), typeSpending.getImgName(),description.getText().toString(), moneyDouble));
         super.onBackPressed();
         userRef.setValue(user);
 
@@ -160,7 +160,7 @@ public class AddSpending extends AppCompatActivity {
     private void addSpinner(){
         SpinnerTypeSpedding =  findViewById(R.id.typeSpedding);
         typeSpendings = new ArrayList();
-        typeSpendings.add(new TypeSpending( "Ăn uống",R.drawable.noto_pot_of_food, 0));
+        typeSpendings.add(new TypeSpending( "Ăn uống", R.drawable.noto_pot_of_food, 0));
         typeSpendings.add(new TypeSpending( "Di chuyển", R.drawable.emojione_v1_motorcycle, 0));
         typeSpendings.add(new TypeSpending( "Thuê nhà", R.drawable.flat_color_icons_home, 0));
         typeSpendings.add(new TypeSpending( "Tiền điện, nước, gas...", R.drawable.icon_park_database_power, 0));

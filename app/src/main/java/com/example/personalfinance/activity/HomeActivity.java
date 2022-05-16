@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -56,11 +57,13 @@ public class HomeActivity extends AppCompatActivity {
     private int indexMonth = -1;
     private DecimalFormat formatter;
     private FirebaseAuth firebaseAuth;
+    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        mContext = this;
 
         getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -144,6 +147,10 @@ public class HomeActivity extends AppCompatActivity {
     private void addSpeding(){
         Intent intent = new Intent(HomeActivity.this, AddSpending.class);
         startActivity(intent);
+    }
+
+    public static Context getContext(){
+        return mContext;
     }
 
     private void loadDataFromFirebase(DataSnapshot snapshot){

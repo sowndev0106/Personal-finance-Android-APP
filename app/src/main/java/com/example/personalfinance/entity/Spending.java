@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class Spending implements Serializable {
     private long id;
     private String type;
-    private int img;
+    private String img;
     private String note;
     private double money;
 
     public Spending() {
     }
 
-    public Spending(long id, String type, int img, String note, double money) {
+    public Spending(long id, String type, String img, String note, double money) {
         this.id = id;
         this.type = type;
         this.img = img;
@@ -52,11 +52,11 @@ public class Spending implements Serializable {
         this.money = money;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
