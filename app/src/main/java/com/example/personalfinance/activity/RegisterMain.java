@@ -11,6 +11,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -27,6 +28,7 @@ public class RegisterMain extends AppCompatActivity {
     private Button btnRegister;
     private TextView txtLogin;
     private ImageButton imgBack;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,26 +42,35 @@ public class RegisterMain extends AppCompatActivity {
         txtLogin = findViewById(R.id.txt_RegisterSignIn);
         txtUser = findViewById(R.id.txtUserName);
         imgBack = findViewById(R.id.img_BackRegister);
+        progressDialog = new ProgressDialog(RegisterMain.this);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = txtEmail.getText().toString().trim();
                 String password = txtPass.getText().toString().trim();
+                progressDialog.setMessage("Waiting....!");
+                progressDialog.setTitle("Loading");
+                progressDialog.show();
+                progressDialog.getWindow().setBackgroundDrawableResource(R.color.black);
                 if (email.isEmpty()) {
+                    Intent intent = new Intent(RegisterMain.this,RegisterMain.class);
+                    startActivity(intent);
                     Toast.makeText(RegisterMain.this, "Vui lòng nhập Email", Toast.LENGTH_SHORT).show();
-
                 }
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    Intent intent = new Intent(RegisterMain.this,RegisterMain.class);
+                    startActivity(intent);
                     Toast.makeText(RegisterMain.this, "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
-
                 }
                 if (password.isEmpty()) {
+                    Intent intent = new Intent(RegisterMain.this,RegisterMain.class);
+                    startActivity(intent);
                     Toast.makeText(RegisterMain.this, "Vui lòng nhập Password", Toast.LENGTH_SHORT).show();
-
                 }
 
                 if (password.length() < 8) {
-
+                    Intent intent = new Intent(RegisterMain.this,RegisterMain.class);
+                    startActivity(intent);
                     Toast.makeText(RegisterMain.this, "Password của bạn phải trên 8 ký tự", Toast.LENGTH_SHORT).show();
 
                 }
